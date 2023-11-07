@@ -9,7 +9,7 @@ usage() { echo >&2 "invalid command, try \"$SCRIPT --help\""; exit 1; }
 SCRIPT_DIR=$(cd $(dirname ${BASH_SOURCE[1]}); pwd)
 ROOT_DIR=$(cd $(dirname ${BASH_SOURCE[0]}); pwd)
 BUILD_DIR="$ROOT_DIR/build"
-REPO_DIR="$BUILD_DIR/librist"
+REPO_DIR="$ROOT_DIR/librist"
 INSTALLER_DIR="$ROOT_DIR/installers"
 
 # URL of git repository.
@@ -117,7 +117,6 @@ if $GIT_UPDATE; then
         (cd "$REPO_DIR"; git checkout "$TAG")
     fi
 fi
-
 # Get librist version
 if $BARE_VERSION; then
     VERSION=$(cd "$REPO_DIR"; git describe --tags | sed -e 's/^v//' -e 's/-g.*//')
